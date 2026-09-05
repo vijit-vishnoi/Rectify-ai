@@ -1,0 +1,60 @@
+with open(r"d:\coding\PROJECTS\rectify-ai\frontend\src\index.css", "w", encoding="utf-8") as f:
+    f.write("""@import "tailwindcss";
+
+@layer utilities {
+  .glass-panel {
+    background-color: rgba(24, 24, 27, 0.6);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(39, 39, 42, 0.8);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Professional Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3f3f46 transparent;
+}
+
+/* Subtly animated gradient border wrapper */
+.animated-border-wrapper {
+  position: relative;
+  border-radius: 0.5rem;
+  background: #18181b;
+  z-index: 0;
+  overflow: hidden;
+}
+.animated-border-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: linear-gradient(45deg, #27272a, #3f3f46, #27272a);
+  z-index: -1;
+  border-radius: 0.6rem;
+  animation: borderGlow 4s ease-in-out infinite;
+  opacity: 0.5;
+}
+@keyframes borderGlow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+body {
+  background-color: #09090b; /* zinc-950 */
+  color: #e4e4e7; /* zinc-200 */
+}
+""")

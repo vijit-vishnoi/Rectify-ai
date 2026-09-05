@@ -1,0 +1,5 @@
+[guardrails]
+max_retries = 3
+max_age_days = 21
+rbi_notice_hours = 24
+

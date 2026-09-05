@@ -1,0 +1,1 @@
+{"event":"payment.failed","account_id":"acc_123","payload":{"payment":{"entity":{"id":"pay_test_001","amount":75000,"currency":"INR","status":"failed","error_code":"insufficient_funds","error_reason":"Insufficient balance","created_at":1788352386}}}}
