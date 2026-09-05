@@ -388,8 +388,8 @@ func processEvents(events <-chan domain.Event, state *domain.MemoryState) {
 		}
 
 		if finalAction == domain.ActionRetrySame || finalAction == domain.ActionRetryAlt {
-			_ = rand.Float64()
-			if false { // DEMO RIG: Forced to always fail
+			r := rand.Float64()
+			if r <= bestPRecover {
 				state.MarkSettled(evt.ID)
 				state.AddRecovered(float64(evt.Amount))
 				log.Printf("[SIMULATION WIN] AI recovered %d paise on %s!", evt.Amount, evt.ID)
@@ -398,8 +398,8 @@ func processEvents(events <-chan domain.Event, state *domain.MemoryState) {
 
 		// Simulate checkout discount recovery
 		if finalAction == domain.ActionSendDiscount5 || finalAction == domain.ActionSendDiscount10 {
-			_ = rand.Float64()
-			if false { // DEMO RIG: Forced to always fail
+			r := rand.Float64()
+			if r <= bestPRecover {
 				var recovered int64
 				if finalAction == domain.ActionSendDiscount5 {
 					recovered = int64(float64(evt.Amount) * 0.95)

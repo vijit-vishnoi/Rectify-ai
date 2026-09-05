@@ -50,7 +50,24 @@ func (r MaxRetriesRule) Check(state *domain.MemoryState, evt domain.Event, actio
 type TRAIQuietHoursRule struct{}
 
 func (r TRAIQuietHoursRule) Check(state *domain.MemoryState, evt domain.Event, action domain.Action) (bool, string) {
-	// Temporary bypass for demo
+	if action != domain.ActionNudge && action != domain.ActionEscalateVoiceHinglish && action != domain.ActionSendPreDebitNotice {
+		return true, ""
+	}
+
+	loc, err := time.LoadLocation("Asia/Kolkata")
+	if err != nil {
+		return false, "timezone_load_error"
+	}
+
+	hour := time.Now().In(loc).Hour()
+	if evt.TraiQuietHours {
+		hour = 22 // Force quiet hours
+	}
+
+	if hour >= 21 || hour < 9 {
+		return false, "trai_quiet_hours"
+	}
+
 	return true, ""
 }
 
